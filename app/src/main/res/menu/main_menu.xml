@@ -3,5 +3,8 @@
     <item android:id="@+id/save_stop"
         android:title="Add a stop"
         android:showAsAction="always"/>
+    <item android:id="@+id/delete_stop"
+        android:title="Delete a stop"
+        android:showAsAction="always"/>
 
 </menu>
