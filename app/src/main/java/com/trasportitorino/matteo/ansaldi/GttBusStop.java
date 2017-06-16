@@ -1,5 +1,6 @@
 package com.trasportitorino.matteo.ansaldi;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,12 +20,12 @@ import org.jsoup.nodes.Element;
 public class GttBusStop {
 
     private ArrayList<BusInfo> stopInfo;
-
+    private int stopNumber;
 
     public void updateBusInfo(int stopNumber) throws Exception{
         String timetable;
         stopInfo = new ArrayList();
-
+        this.stopNumber = stopNumber;
         String busNum;
         String time;
         String passaggio;
@@ -32,7 +33,8 @@ public class GttBusStop {
 
 
         //Get the html table containing the bus timetable
-        timetable = getGttTable("http://gttweb.5t.torino.it/gtt/it/trasporto/arrivi-ricerca.jsp?shortName="+stopNumber+"&stoppingPointCtl:getTransits");
+        //timetable = getGttTable("http://gttweb.5t.torino.it/gtt/it/trasporto/arrivi-ricerca.jsp?shortName="+stopNumber+"&stoppingPointCtl:getTransits");
+        timetable = getGttTable("http://www.5t.torino.it/5t/it/trasporto/arrivi-ricerca.jsp");
 
         //Parse the html table using JSoup
         Document doc = Jsoup.parse(timetable);
@@ -58,7 +60,16 @@ public class GttBusStop {
     private String getGttTable(String url) throws IOException {
 
         boolean table = false;
+        String urlParams = "shortName="+stopNumber+"&stoppingPointCtl:getTransits=Invia";
         HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
+        con.setRequestMethod("POST");
+        //for POST
+        con.setDoInput(true);
+        OutputStream os = con.getOutputStream();
+        os.write(urlParams.getBytes());
+        os.flush();
+        os.close();
+        //end for POST
         con.setInstanceFollowRedirects(false);
         con.connect();
         con.getInputStream();
