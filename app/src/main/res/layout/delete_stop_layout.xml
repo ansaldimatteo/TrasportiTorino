@@ -14,7 +14,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
-        android:id="@+id/stopNumber"
+        android:id="@+id/stopNumberD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number">

@@ -14,7 +14,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
-        android:id="@+id/stopNumber"
+        android:id="@+id/stopNumberA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number">
@@ -31,11 +31,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
-        android:id="@+id/stopName"
+        android:id="@+id/stopNameA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <requestFocus />
 
     </EditText>
 
